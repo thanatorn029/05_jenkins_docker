@@ -8,7 +8,7 @@ export default function Page() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function getAttractions() {
+    const getAttractions = async () => {
       try {
         const apiHost = process.env.NEXT_PUBLIC_API_HOST;
         const res = await fetch(`${apiHost}/attractions`, { cache: "no-store" });
@@ -20,64 +20,63 @@ export default function Page() {
       } finally {
         setLoading(false);
       }
-    }
-
+    };
     getAttractions();
   }, []);
 
-  if (loading)
-    return (
-      <main className="container">
-        <div className="empty">Loading...</div>
-      </main>
-    );
-
-  if (error)
-    return (
-      <main className="container">
-        <div className="empty">Error: {error}</div>
-      </main>
-    );
+  if (loading) return <EmptyState message="Loading..." />;
+  if (error) return <EmptyState message={`Error: ${error}`} />;
 
   return (
     <main className="container">
-      <header className="header">
-        <h1 className="title">F1 Circuits</h1>
-        <p className="subtitle">Explore iconic Formula 1 tracks worldwide</p>
-      </header>
-
-      {!rows || rows.length === 0 ? (
-        <div className="empty">No attractions found.</div>
+      <Header />
+      {rows.length === 0 ? (
+        <EmptyState message="No attractions found." />
       ) : (
         <section className="grid" aria-live="polite">
-          {rows.map((x) => (
-            <article key={x.id} className="card" tabIndex={0}>
-              {x.coverimage && (
-                <div className="media">
-                  <img
-                    src={x.coverimage}
-                    alt={x.name}
-                    className="img animate-img"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              )}
-              <div className="body">
-                <h3 className="card-title">{x.name}</h3>
-                {x.detail && <p className="detail">{x.detail}</p>}
-                <div className="meta">
-                  <span className="badge">{x.country || "Unknown"}</span>
-                  <small>
-                    Lat: <span className="code">{x.latitude}</span> · Lng:{" "}
-                    <span className="code">{x.longitude}</span>
-                  </small>
-                </div>
-              </div>
-            </article>
+          {rows.map((x, index) => (
+            <Card key={x.id} data={x} delay={index * 0.1} />
           ))}
         </section>
       )}
     </main>
   );
 }
+
+const Header = () => (
+  <header className="header">
+    <h1 className="title">F1 Circuits</h1>
+    <p className="subtitle">Explore iconic Formula 1 tracks worldwide</p>
+  </header>
+);
+
+const EmptyState = ({ message }) => (
+  <div className="empty">{message}</div>
+);
+
+const Card = ({ data, delay }) => (
+  <article className="card" style={{ "--delay": `${delay}s` }} tabIndex={0}>
+    {data.coverimage && (
+      <div className="media">
+        <img
+          src={data.coverimage}
+          alt={data.name}
+          className="img animate-img"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    )}
+    <div className="body">
+      <h3 className="card-title">{data.name}</h3>
+      {data.detail && <p className="detail">{data.detail}</p>}
+      <div className="meta">
+        <span className="badge">{data.country || "Unknown"}</span>
+        <small>
+          Lat: <span className="code">{data.latitude}</span> · Lng:{" "}
+          <span className="code">{data.longitude}</span>
+        </small>
+      </div>
+    </div>
+  </article>
+);
