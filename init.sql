@@ -8,9 +8,9 @@ CREATE TABLE `attraction` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `attraction` (`id`, `name`, `detail`, `coverimage`, `latitude`, `longitude`) VALUES
-(1, 'Silverstone Circuit', 'The home of British motorsport, hosting Formula 1 British Grand Prix.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Silverstone_Circuit_Aerial.jpg/640px-Silverstone_Circuit_Aerial.jpg', 52.0786, -1.0169),
-(2, 'Monaco Grand Prix Circuit', 'Famous street circuit in Monte Carlo, known for its tight corners and luxury backdrop.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Monte_Carlo_circuit.jpg/640px-Monte_Carlo_circuit.jpg', 43.7347, 7.4206),
-(3, 'Suzuka Circuit', 'Iconic Japanese track with figure-eight layout, hosting F1 Japanese Grand Prix.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Suzuka_Circuit_satellite_image.jpg/640px-Suzuka_Circuit_satellite_image.jpg', 34.8431, 136.5410),
+(1, 'Silverstone Circuit', 'The home of British motorsport, hosting Formula 1 British Grand Prix.', '/Silverstone Circuit.webp', 52.0786, -1.0169),
+(2, 'Monaco Grand Prix Circuit', 'Famous street circuit in Monte Carlo, known for its tight corners and luxury backdrop.', 'Monaco Grand Prix Circuit.webp', 43.7347, 7.4206),
+(3, 'Suzuka Circuit', 'Iconic Japanese track with figure-eight layout, hosting F1 Japanese Grand Prix.', 'Suzuka Circuit.avif', 34.8431, 136.5410),
 (4, 'Circuit de Spa-Francorchamps', 'Legendary Belgian track, known for Eau Rouge corner and unpredictable weather.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Spa-Francorchamps_-_aerial_view.jpg/640px-Spa-Francorchamps_-_aerial_view.jpg', 50.4372, 5.9714),
 (5, 'Autodromo Nazionale Monza', 'Historic Italian circuit near Milan, famous for high-speed straights.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Monza_circuit_2018.jpg/640px-Monza_circuit_2018.jpg', 45.6156, 9.2811),
 (6, 'Laguna Seca', 'Famous US track in California, known for the challenging Corkscrew turn.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Laguna_Seca_Aerial.jpg/640px-Laguna_Seca_Aerial.jpg', 36.5841, -121.7480),
